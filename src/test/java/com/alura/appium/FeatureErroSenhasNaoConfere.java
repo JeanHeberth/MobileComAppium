@@ -16,11 +16,10 @@ public class FeatureErroSenhasNaoConfere {
     public void nao_Consigo_Cadastrar_Usuario_Com_Senha_Que_Nao_Confere() {
 
         AppiumDriver driverFeature = AppiumDriverConfig.Intance().driverConfig;
-        MobileElement botaoCadastrarUsuario = (MobileElement) driverFeature.findElementById("br.com.alura.aluraesporte:id/login_botao_cadastrar_usuario");
-        botaoCadastrarUsuario.click();
 
-
-        CadastroPageObjects telaCadastro = new CadastroPageObjects(driverFeature);
+        LoginPageObjects telaLogin = new LoginPageObjects(driverFeature);
+        telaLogin.buscarElementos();
+        CadastroPageObjects telaCadastro = telaLogin.IrParaTelaDeCadastro();
         telaCadastro.BuscarElementos();
         telaCadastro.Cadastrar("Jean", "123", "321");
         assertEquals("Senhas não conferem", telaCadastro.MensagemErro());
@@ -32,14 +31,12 @@ public class FeatureErroSenhasNaoConfere {
 
         AppiumDriver driverFeature = AppiumDriverConfig.Intance().driverConfig;
 
-        MobileElement botaoCadastrarUsuario = (MobileElement) driverFeature.findElementById("br.com.alura.aluraesporte:id/login_botao_cadastrar_usuario");
-        botaoCadastrarUsuario.click();
-
-        CadastroPageObjects telaCadastro = new CadastroPageObjects(driverFeature);
+        LoginPageObjects telaLogin = new LoginPageObjects(driverFeature);
+        telaLogin.buscarElementos();
+        CadastroPageObjects telaCadastro = telaLogin.IrParaTelaDeCadastro();
         telaCadastro.BuscarElementos();
-        telaCadastro.Cadastrar("Jean", "123", "123");
-
-        MobileElement botaoLogar = (MobileElement) driverFeature.findElementById("br.com.alura.aluraesporte:id/login_botao_logar");
+        telaLogin = telaCadastro.Cadastrar("Jean", "123", "123");
+        telaLogin.buscarElementos();
 
 
     }

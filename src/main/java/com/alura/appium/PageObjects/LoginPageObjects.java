@@ -8,6 +8,7 @@ public class LoginPageObjects {
 
     private AppiumDriver driverFeature;
     private MobileElement botaoCadastro;
+    private MobileElement botaoCadastrarUsuario;
 
     public LoginPageObjects(AppiumDriver driver) {
         this.driverFeature = driver;
@@ -16,11 +17,12 @@ public class LoginPageObjects {
 
     public void buscarElementos() {
 
-        botaoCadastro = (MobileElement) driverFeature.findElementById("br.com.alura.aluraesporte:id/cadastro_usuario_botao_cadastrar");
+        botaoCadastrarUsuario = (MobileElement) driverFeature.findElementById("br.com.alura.aluraesporte:id/login_botao_cadastrar_usuario");
     }
 
-    public CadastroPageObjects IrParaCadastro() {
-        botaoCadastro.click();
+
+    public CadastroPageObjects IrParaTelaDeCadastro() {
+        botaoCadastrarUsuario.click();
         return new CadastroPageObjects(this.driverFeature);
     }
 }
